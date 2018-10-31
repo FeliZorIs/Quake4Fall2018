@@ -1,0 +1,3 @@
+"itemPickUpTest"
+"^:itemPickUpTest	^0AIR DEFENSE BUNKER"
+""

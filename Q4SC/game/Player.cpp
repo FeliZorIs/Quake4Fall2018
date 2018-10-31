@@ -63,7 +63,7 @@ const float	PLAYER_ITEM_DROP_SPEED	= 100.0f;
 const int SPECTATE_RAISE = 25;
 
 const int	HEALTH_PULSE		= 1000;			// Regen rate and heal leak rate (for health > 100)
-const int	ARMOR_PULSE			= 1000;			// armor ticking down due to being higher than maxarmor
+const int	ARMOR_PULSE			= 10;			// armor ticking down due to being higher than maxarmor
 const int	AMMO_REGEN_PULSE	= 1000;			// ammo regen in Arena CTF
 const int	POWERUP_BLINKS		= 5;			// Number of times the powerup wear off sound plays
 const int	POWERUP_BLINK_TIME	= 1000;			// Time between powerup wear off sounds
@@ -10063,6 +10063,10 @@ void idPlayer::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
  	int			knockback;
  	idVec3		damage_from;
  	float		attackerPushScale;
+	//ORIS BEGIN
+	int			experience;
+	//ORIS END
+
 
 	// RAVEN BEGIN
 	// twhitaker: difficulty levels
@@ -10318,6 +10322,22 @@ void idPlayer::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
   	lastDamageDir.Normalize();
 	lastDamageDef = damageDef->Index();
 	lastDamageLocation = location;
+
+/*
+//=======================
+// SWBN1 : self written block number 1
+//=======================
+	int experience = 0;
+	int maxEXP = 50;
+
+	experience += damage * 2;
+	if (experience > maxEXP)
+	{
+		experience = 0;
+		maxEXP = maxEXP * 1.05;
+		health -= 100;
+	}
+//ORIS END */
 }
 
 /*

@@ -696,8 +696,8 @@ windowDef Desktop
 		{
 			rect	0,24,640,480
 			visible	1
-			background	"gfx/guis/mainmenu/halfLife"
-			matcolor	0.694,0.694,0.694,1
+			background	"gfx/guis/mainmenu/screen"
+			matcolor	0.690,0.690,0.690,1
 		}
 		windowDef screen2
 		{
@@ -893,7 +893,7 @@ windowDef Desktop
 			{
 				rect	44,214,314,23
 				visible	1
-				forecolor	1,0,0.486,0.8
+				forecolor	1,0,0.478,0.8
 				text	"#str_200000"
 				textscale	0.33
 				font	"fonts/r_strogg"
