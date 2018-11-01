@@ -167,6 +167,11 @@ typedef struct rvAICombat_s{
 
 	int						coverValidTime;
 	int						maxInvalidCoverTime;
+
+public:
+	//ORIS BEGIN
+	int MonExp;
+	//ORIS END
 } rvAICombat_t;
 
 typedef struct rvAIPain_s {

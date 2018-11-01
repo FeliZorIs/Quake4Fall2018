@@ -17,12 +17,15 @@ public:
 	void				Spawn							( void );
 	void				Save							( idSaveGame *savefile ) const;
 	void				Restore							( idRestoreGame *savefile );
-
+	//ORIS BEGIN
+	//virtual void		OnDeath(idEntity *attacker);
+	//ORIS END
 protected:
 
 	virtual void		OnStopMoving					( aiMoveCommand_t oldMoveCommand );
 
 	virtual bool		CheckActions					( void );
+	
 
 	int					maxShots;	
 	int					minShots;
@@ -68,6 +71,9 @@ private:
 	stateResult_t		State_Torso_SprayAttack			( const stateParms_t& parms );
 
 	CLASS_STATES_PROTOTYPE ( rvMonsterStroggMarine );
+	//ORIS BEGIN
+	int MonExp = 500;
+	//ORIS END;
 };
 
 CLASS_DECLARATION( idAI, rvMonsterStroggMarine )

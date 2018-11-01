@@ -796,6 +796,12 @@ public:
 	void					ResetCash();
 // RITUAL END
 
+// ORIS BEGIN
+	int						exp;
+	int						level;
+	void					LevelUp(int experience);
+// ORIS END
+
 protected:
 	void					SetupHead( const char* modelKeyName = "", idVec3 headOffset = idVec3(0, 0, 0) );
 

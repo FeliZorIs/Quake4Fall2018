@@ -1602,6 +1602,19 @@ bool idAI::Pain( idEntity *inflictor, idEntity *attacker, int damage, const idVe
 	}	
 
 	return aifl.pain;
+/*	//ORIS BEGIN
+	if (attacker && attacker->IsType(idPlayer::GetClassType())) {
+
+		gameLocal.AlertAI((idActor *)attacker);
+		int MonExp = 500;
+		idPlayer* player;
+		player = dynamic_cast<idPlayer*>(attacker);
+		idPlayer playerref = idPlayer(*player);
+		//playerref.Event_SetHealth(50);
+		gameLocal.Printf("in on death");
+		playerref.LevelUp(MonExp);
+	}
+	//ORIS END */
 }
 
 /*
@@ -3683,6 +3696,13 @@ void idAI::OnDeath( void ){
 	aiManager.RemoveTeammate ( this );
 
 	ExecScriptFunction( funcs.death );
+
+	//ORIS BEGIN
+	int MonExp = 500;
+	idPlayer *player;
+	idPlayer playerref = idPlayer(*player);
+	playerref.LevelUp(MonExp);
+	//ORIS END 
 
 /* DONT DROP ANYTHING FOR NOW
 	float rVal = gameLocal.random.RandomInt( 100 );

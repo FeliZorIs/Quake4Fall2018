@@ -70,6 +70,7 @@ const int	POWERUP_BLINK_TIME	= 1000;			// Time between powerup wear off sounds
 const float MIN_BOB_SPEED		= 5.0f;			// minimum speed to bob and play run/walk animations at
 const int	MAX_RESPAWN_TIME	= 10000;
 const int	RAGDOLL_DEATH_TIME	= 3000;
+
 #ifdef _XENON
 	const int	RAGDOLL_DEATH_TIME_XEN_SP	= 1000;
 	const int	MAX_RESPAWN_TIME_XEN_SP	= 3000;
@@ -10063,9 +10064,6 @@ void idPlayer::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
  	int			knockback;
  	idVec3		damage_from;
  	float		attackerPushScale;
-	//ORIS BEGIN
-	int			experience;
-	//ORIS END
 
 
 	// RAVEN BEGIN
@@ -10264,7 +10262,7 @@ void idPlayer::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
 		}
 
 		int oldHealth = health;
-		health -= damage;
+		health += damage; //ORIS, changed health from -= damage to += damage
 
 		GAMELOG_ADD ( va("player%d_damage_taken", entityNumber ), damage );
 		GAMELOG_ADD ( va("player%d_damage_%s", entityNumber, damageDefName), damage );
@@ -10322,22 +10320,6 @@ void idPlayer::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
   	lastDamageDir.Normalize();
 	lastDamageDef = damageDef->Index();
 	lastDamageLocation = location;
-
-/*
-//=======================
-// SWBN1 : self written block number 1
-//=======================
-	int experience = 0;
-	int maxEXP = 50;
-
-	experience += damage * 2;
-	if (experience > maxEXP)
-	{
-		experience = 0;
-		maxEXP = maxEXP * 1.05;
-		health -= 100;
-	}
-//ORIS END */
 }
 
 /*
@@ -14093,5 +14075,21 @@ int idPlayer::CanSelectWeapon(const char* weaponName)
 
 	return weaponNum;
 }
+
+//ORIS BEGIN
+void idPlayer::LevelUp(int MonExp){
+	exp += MonExp;
+	if (exp >= 400){
+		gameLocal.Printf("in level up function");
+		inventory.maxHealth += 10;
+		gameLocal.Printf("level up");
+		Event_SetHealth(50);
+
+
+		//addhealth
+		level += 1;
+	}
+}
+//ORIS END 
 
 // RITUAL END
